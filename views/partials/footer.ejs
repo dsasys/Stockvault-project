@@ -1,42 +1,601 @@
 </main>
   
   <!-- Footer -->
-  <footer class="footer mt-6">
+  <footer class="footer mt-6" style="background: linear-gradient(90deg, #e0e7ff 0%, #f8fafc 60%, #38d39f 100%); padding: 2.5rem 0 1.2rem 0; border-top: 1px solid #e0e7ff;">
     <div class="container">
-      <div class="footer-grid">
-        <div>
-          <h3 class="footer-title">TradePro</h3>
-          <p>Your trusted partner for online stock trading.</p>
+      <div class="footer-grid" style="display: flex; flex-wrap: wrap; gap: 2.5rem; justify-content: space-between; align-items: flex-start;">
+        <div style="flex: 1 1 180px; min-width: 180px;">
+          <h2 style="font-weight: 800; color: #4f8cff; letter-spacing: 1px; margin-bottom: 0.5em;">StockVault</h2>
+          <p style="color: #6a11cb; font-size: 1.05em; margin-bottom: 0.7em;">Your gateway to smart trading.</p>
+          <div style="font-size: 1.3em; color: #38d39f;">
+            <i class="fab fa-facebook-f mr-2"></i>
+            <i class="fab fa-twitter mr-2"></i>
+            <i class="fab fa-linkedin-in mr-2"></i>
+            <i class="fab fa-github"></i>
+          </div>
         </div>
-        <div>
-          <h4 class="footer-title">Quick Links</h4>
-          <ul class="footer-links">
+        <div style="flex: 1 1 120px; min-width: 120px;">
+          <h4 class="footer-title" style="color: #4f8cff; font-weight: 700;">Quick Links</h4>
+          <ul class="footer-links" style="list-style: none; padding: 0;">
             <li><a href="/">Home</a></li>
             <li><a href="/stocks">Stocks</a></li>
-            <li><a href="/about">About Us</a></li>
-            <li><a href="/contact">Contact</a></li>
           </ul>
         </div>
-        <div>
-          <h4 class="footer-title">Legal</h4>
-          <ul class="footer-links">
-            <li><a href="/terms">Terms of Service</a></li>
-            <li><a href="/privacy">Privacy Policy</a></li>
+        <div style="flex: 1 1 120px; min-width: 120px;">
+          <h4 class="footer-title" style="color: #4f8cff; font-weight: 700;">Help & Support</h4>
+          <ul class="footer-links" style="list-style: none; padding: 0;">
+            <li style="margin-bottom: 12px;">
+              <a href="#" id="footerGuideBtn" style="display: flex; align-items: center; gap: 8px; text-decoration: none; color: inherit;">
+                <span style="font-size: 1.2em; background: linear-gradient(90deg, #4f8cff 0%, #38d39f 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">❓</span>
+                <span style="font-weight: 600; color: #4f8cff;">Need Help?</span>
+              </a>
+            </li>
+            <li style="margin-bottom: 8px;">
+              <a href="#" id="footerOnboardingBtn" style="display: flex; align-items: center; gap: 8px; text-decoration: none; color: inherit;">
+                <span style="font-size: 1.1em; color: #38d39f;">🚀</span>
+                <span style="font-weight: 600; color: #38d39f;">Get Started</span>
+              </a>
+            </li>
+            <li><a href="/stocks">Market Info</a></li>
           </ul>
-        </div>
-        <div>
-          <h4 class="footer-title">Contact Us</h4>
-          <p>support@tradepro.com</p>
-          <p>+1 (555) 123-4567</p>
         </div>
       </div>
-      <div class="footer-bottom">
-        <p>&copy; <%= new Date().getFullYear() %> TradePro. All rights reserved.</p>
+      <div class="footer-bottom" style="margin-top: 2.5rem; text-align: center; color: #6a11cb; font-size: 1.05em;">
+        <p>&copy; <%= new Date().getFullYear() %> StockVault. All rights reserved.</p>
       </div>
     </div>
   </footer>
   
+  <!-- Global Guide Modal (for footer use) -->
+  <div id="globalGuideModal" style="display:none; position: fixed; inset: 0; background: rgba(60,70,100,0.25); backdrop-filter: blur(8px); z-index: 1300; align-items: center; justify-content: center; padding: 20px;">
+    <div style="background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%); border-radius: 24px; max-width: 600px; width: 100%; max-height: 90vh; overflow-y: auto; box-shadow: 0 20px 60px rgba(80,80,120,0.25); position: relative; border: 1px solid rgba(255,255,255,0.2);">
+      <!-- Header with gradient -->
+      <div style="background: linear-gradient(135deg, #4f8cff 0%, #38d39f 100%); padding: 2rem 2rem 1.5rem 2rem; border-radius: 24px 24px 0 0; position: relative; overflow: hidden;">
+        <div style="position: absolute; top: -50px; right: -50px; width: 100px; height: 100px; background: rgba(255,255,255,0.1); border-radius: 50%;"></div>
+        <div style="position: absolute; bottom: -30px; left: -30px; width: 60px; height: 60px; background: rgba(255,255,255,0.08); border-radius: 50%;"></div>
+        <button id="closeGlobalGuideModal" style="position: absolute; top: 20px; right: 20px; background: rgba(255,255,255,0.2); border: none; font-size: 1.2em; color: #fff; cursor: pointer; padding: 8px; border-radius: 50%; backdrop-filter: blur(10px); transition: all 0.3s ease;">
+          <i class="fas fa-times"></i>
+        </button>
+        <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 1rem;">
+          <div style="width: 60px; height: 60px; background: rgba(255,255,255,0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.8em; color: #fff; backdrop-filter: blur(10px);">
+            <i class="fas fa-rocket"></i>
+          </div>
+          <div>
+            <h2 style="color: #fff; font-weight: 800; margin: 0; font-size: 1.8em; text-shadow: 0 2px 4px rgba(0,0,0,0.1);">Welcome to StockVault!</h2>
+            <p style="color: rgba(255,255,255,0.9); margin: 0; font-size: 1em;">Your journey to smart trading starts here</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Content -->
+      <div style="padding: 2rem;">
+        <!-- Features Grid -->
+        <div style="margin-bottom: 2rem;">
+          <h3 style="color: #4f8cff; font-weight: 700; margin-bottom: 1.5rem; font-size: 1.3em; display: flex; align-items: center; gap: 10px;">
+            <i class="fas fa-star" style="color: #38d39f;"></i>
+            Platform Features
+          </h3>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
+            <div style="background: linear-gradient(135deg, #f0f4ff 0%, #e8f5e8 100%); padding: 1.2rem; border-radius: 16px; border-left: 4px solid #4f8cff; transition: all 0.3s ease;">
+              <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 8px;">
+                <i class="fas fa-chart-line" style="color: #4f8cff; font-size: 1.2em;"></i>
+                <h4 style="margin: 0; color: #4f8cff; font-weight: 600;">Dashboard</h4>
+              </div>
+              <p style="margin: 0; color: #666; font-size: 0.9em; line-height: 1.4;">Your command center for portfolio summary, top stocks, and real-time stats.</p>
+            </div>
+            
+            <div style="background: linear-gradient(135deg, #f0f4ff 0%, #e8f5e8 100%); padding: 1.2rem; border-radius: 16px; border-left: 4px solid #38d39f; transition: all 0.3s ease;">
+              <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 8px;">
+                <i class="fas fa-search-dollar" style="color: #38d39f; font-size: 1.2em;"></i>
+                <h4 style="margin: 0; color: #38d39f; font-weight: 600;">Stocks</h4>
+              </div>
+              <p style="margin: 0; color: #666; font-size: 0.9em; line-height: 1.4;">Browse, search, and trade stocks with real-time market prices.</p>
+            </div>
+            
+            <div style="background: linear-gradient(135deg, #f0f4ff 0%, #e8f5e8 100%); padding: 1.2rem; border-radius: 16px; border-left: 4px solid #4f8cff; transition: all 0.3s ease;">
+              <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 8px;">
+                <i class="fas fa-briefcase" style="color: #4f8cff; font-size: 1.2em;"></i>
+                <h4 style="margin: 0; color: #4f8cff; font-weight: 600;">Portfolio</h4>
+              </div>
+              <p style="margin: 0; color: #666; font-size: 0.9em; line-height: 1.4;">Track your holdings, profit/loss, and investment performance.</p>
+            </div>
+            
+            <div style="background: linear-gradient(135deg, #f0f4ff 0%, #e8f5e8 100%); padding: 1.2rem; border-radius: 16px; border-left: 4px solid #38d39f; transition: all 0.3s ease;">
+              <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 8px;">
+                <i class="fas fa-wallet" style="color: #38d39f; font-size: 1.2em;"></i>
+                <h4 style="margin: 0; color: #38d39f; font-weight: 600;">Wallet</h4>
+              </div>
+              <p style="margin: 0; color: #666; font-size: 0.9em; line-height: 1.4;">Deposit, withdraw, and manage your trading funds securely.</p>
+            </div>
+            
+            <div style="background: linear-gradient(135deg, #f0f4ff 0%, #e8f5e8 100%); padding: 1.2rem; border-radius: 16px; border-left: 4px solid #4f8cff; transition: all 0.3s ease;">
+              <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 8px;">
+                <i class="fas fa-history" style="color: #4f8cff; font-size: 1.2em;"></i>
+                <h4 style="margin: 0; color: #4f8cff; font-weight: 600;">Transactions</h4>
+              </div>
+              <p style="margin: 0; color: #666; font-size: 0.9em; line-height: 1.4;">Complete history of your trading and fund activities.</p>
+            </div>
+            
+            <div style="background: linear-gradient(135deg, #f0f4ff 0%, #e8f5e8 100%); padding: 1.2rem; border-radius: 16px; border-left: 4px solid #38d39f; transition: all 0.3s ease;">
+              <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 8px;">
+                <i class="fas fa-user-cog" style="color: #38d39f; font-size: 1.2em;"></i>
+                <h4 style="margin: 0; color: #38d39f; font-weight: 600;">Profile</h4>
+              </div>
+              <p style="margin: 0; color: #666; font-size: 0.9em; line-height: 1.4;">Update your information and customize your profile.</p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Key Terms Section -->
+        <div style="background: linear-gradient(135deg, #f8fafc 0%, #f0f4ff 100%); padding: 1.5rem; border-radius: 16px; margin-bottom: 2rem;">
+          <h3 style="color: #4f8cff; font-weight: 700; margin-bottom: 1rem; font-size: 1.3em; display: flex; align-items: center; gap: 10px;">
+            <i class="fas fa-graduation-cap" style="color: #38d39f;"></i>
+            Key Trading Terms
+          </h3>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+            <div style="background: #fff; padding: 1rem; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+              <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
+                <i class="fas fa-chart-line" style="color: #4f8cff; font-size: 0.9em;"></i>
+                <strong style="color: #4f8cff; font-size: 0.9em;">P/L (Profit/Loss)</strong>
+              </div>
+              <p style="margin: 0; color: #666; font-size: 0.85em; line-height: 1.3;">Difference between what you paid and current value</p>
+            </div>
+            
+            <div style="background: #fff; padding: 1rem; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+              <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
+                <i class="fas fa-box" style="color: #38d39f; font-size: 0.9em;"></i>
+                <strong style="color: #38d39f; font-size: 0.9em;">Holding</strong>
+              </div>
+              <p style="margin: 0; color: #666; font-size: 0.85em; line-height: 1.3;">Stocks/assets you currently own</p>
+            </div>
+            
+            <div style="background: #fff; padding: 1rem; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+              <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
+                <i class="fas fa-briefcase" style="color: #4f8cff; font-size: 0.9em;"></i>
+                <strong style="color: #4f8cff; font-size: 0.9em;">Portfolio</strong>
+              </div>
+              <p style="margin: 0; color: #666; font-size: 0.85em; line-height: 1.3;">All your holdings and investments</p>
+            </div>
+            
+            <div style="background: #fff; padding: 1rem; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+              <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
+                <i class="fas fa-shopping-cart" style="color: #38d39f; font-size: 0.9em;"></i>
+                <strong style="color: #38d39f; font-size: 0.9em;">Market Order</strong>
+              </div>
+              <p style="margin: 0; color: #666; font-size: 0.85em; line-height: 1.3;">Buy/sell at the best available price</p>
+            </div>
+            
+            <div style="background: #fff; padding: 1rem; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+              <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
+                <i class="fas fa-chart-bar" style="color: #4f8cff; font-size: 0.9em;"></i>
+                <strong style="color: #4f8cff; font-size: 0.9em;">Volume</strong>
+              </div>
+              <p style="margin: 0; color: #666; font-size: 0.85em; line-height: 1.3;">Number of shares traded in a period</p>
+            </div>
+            
+            <div style="background: #fff; padding: 1rem; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+              <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
+                <i class="fas fa-dollar-sign" style="color: #38d39f; font-size: 0.9em;"></i>
+                <strong style="color: #38d39f; font-size: 0.9em;">Equity</strong>
+              </div>
+              <p style="margin: 0; color: #666; font-size: 0.85em; line-height: 1.3;">Value of your shares in the market</p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Call to Action -->
+        <div style="background: linear-gradient(135deg, #4f8cff 0%, #38d39f 100%); padding: 1.5rem; border-radius: 16px; text-align: center; color: #fff;">
+          <div style="display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 8px;">
+            <i class="fas fa-lightbulb" style="font-size: 1.2em;"></i>
+            <h4 style="margin: 0; font-weight: 600;">Pro Tip</h4>
+          </div>
+          <p style="margin: 0; font-size: 0.95em; opacity: 0.95;">Use the navigation bar to explore all features. You can always open this guide from the footer or chat with our assistant!</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Floating Chatbot -->
+  <div id="chatbotToggle" style="position: fixed; bottom: 90px; right: 20px; z-index: 1200; background: linear-gradient(135deg, #4f8cff 0%, #38d39f 100%); color: #fff; border: none; border-radius: 50%; width: 56px; height: 56px; box-shadow: 0 4px 16px rgba(80,80,120,0.18); font-size: 1.8em; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s ease;">
+    <i class="fas fa-comments"></i>
+  </div>
+
+  <!-- Chatbot Modal -->
+  <div id="chatbotModal" style="display:none; position: fixed; bottom: 20px; right: 20px; z-index: 1300; width: 350px; max-width: 90vw; height: 500px; max-height: 80vh; background: #fff; border-radius: 18px; box-shadow: 0 8px 32px rgba(80,80,120,0.18); flex-direction: column;">
+    <!-- Chatbot Header -->
+    <div style="background: linear-gradient(135deg, #4f8cff 0%, #38d39f 100%); color: #fff; padding: 1rem; border-radius: 18px 18px 0 0; display: flex; justify-content: space-between; align-items: center;">
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <i class="fas fa-robot" style="font-size: 1.2em;"></i>
+        <span style="font-weight: 600;">StockVault Assistant</span>
+      </div>
+      <button id="closeChatbot" style="background: none; border: none; color: #fff; font-size: 1.2em; cursor: pointer; padding: 5px;">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+    
+    <!-- Chat Messages -->
+    <div id="chatMessages" style="flex: 1; padding: 1rem; overflow-y: auto; display: flex; flex-direction: column; gap: 12px;">
+      <!-- Welcome message -->
+      <div style="display: flex; gap: 8px; align-items: flex-start;">
+        <div style="width: 32px; height: 32px; background: linear-gradient(135deg, #4f8cff 0%, #38d39f 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 0.8em;">
+          <i class="fas fa-robot"></i>
+        </div>
+        <div style="background: #f0f4ff; padding: 12px; border-radius: 12px; max-width: 80%;">
+          <p style="margin: 0; font-size: 0.9em; color: #333;">Hi! I'm your StockVault assistant. How can I help you today? You can ask me about:</p>
+          <ul style="margin: 8px 0 0 0; padding-left: 16px; font-size: 0.85em; color: #666;">
+            <li>How to buy/sell stocks</li>
+            <li>Understanding your portfolio</li>
+            <li>Managing your wallet</li>
+            <li>Trading tips</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Quick FAQ Buttons -->
+    <div style="padding: 0 1rem 0.5rem 1rem; border-top: 1px solid #eee;">
+      <div style="display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px;">
+        <button class="faq-btn" data-question="How do I buy stocks?" style="background: #e0e7ff; border: none; padding: 6px 12px; border-radius: 16px; font-size: 0.8em; color: #4f8cff; cursor: pointer; transition: all 0.2s;">Buy Stocks</button>
+        <button class="faq-btn" data-question="How do I check my portfolio?" style="background: #e0e7ff; border: none; padding: 6px 12px; border-radius: 16px; font-size: 0.8em; color: #4f8cff; cursor: pointer; transition: all 0.2s;">Portfolio</button>
+        <button class="faq-btn" data-question="How do I add money to my wallet?" style="background: #e0e7ff; border: none; padding: 6px 12px; border-radius: 16px; font-size: 0.8em; color: #4f8cff; cursor: pointer; transition: all 0.2s;">Add Money</button>
+        <button class="faq-btn" data-question="What is P/L?" style="background: #e0e7ff; border: none; padding: 6px 12px; border-radius: 16px; font-size: 0.8em; color: #4f8cff; cursor: pointer; transition: all 0.2s;">P/L</button>
+        <button class="faq-btn" data-question="How do I sell stocks?" style="background: #e0e7ff; border: none; padding: 6px 12px; border-radius: 16px; font-size: 0.8em; color: #4f8cff; cursor: pointer; transition: all 0.2s;">Sell Stocks</button>
+        <button class="faq-btn" data-question="What are trading hours?" style="background: #e0e7ff; border: none; padding: 6px 12px; border-radius: 16px; font-size: 0.8em; color: #4f8cff; cursor: pointer; transition: all 0.2s;">Hours</button>
+        <button class="faq-btn" data-question="How do I find specific stocks?" style="background: #e0e7ff; border: none; padding: 6px 12px; border-radius: 16px; font-size: 0.8em; color: #4f8cff; cursor: pointer; transition: all 0.2s;">Find Stocks</button>
+        <button class="faq-btn" data-question="What if I lose money?" style="background: #e0e7ff; border: none; padding: 6px 12px; border-radius: 16px; font-size: 0.8em; color: #4f8cff; cursor: pointer; transition: all 0.2s;">Risk</button>
+        <button class="faq-btn" data-question="How do I track performance?" style="background: #e0e7ff; border: none; padding: 6px 12px; border-radius: 16px; font-size: 0.8em; color: #4f8cff; cursor: pointer; transition: all 0.2s;">Performance</button>
+        <button class="faq-btn" data-question="What is a portfolio?" style="background: #e0e7ff; border: none; padding: 6px 12px; border-radius: 16px; font-size: 0.8em; color: #4f8cff; cursor: pointer; transition: all 0.2s;">Portfolio Info</button>
+        <button class="faq-btn" data-question="How do I withdraw money?" style="background: #e0e7ff; border: none; padding: 6px 12px; border-radius: 16px; font-size: 0.8em; color: #4f8cff; cursor: pointer; transition: all 0.2s;">Withdraw</button>
+        <button class="faq-btn" data-question="What are market orders?" style="background: #e0e7ff; border: none; padding: 6px 12px; border-radius: 16px; font-size: 0.8em; color: #4f8cff; cursor: pointer; transition: all 0.2s;">Orders</button>
+        <button class="faq-btn" data-question="How do I update my profile?" style="background: #e0e7ff; border: none; padding: 6px 12px; border-radius: 16px; font-size: 0.8em; color: #4f8cff; cursor: pointer; transition: all 0.2s;">Profile</button>
+        <button class="faq-btn" data-question="What is volume in trading?" style="background: #e0e7ff; border: none; padding: 6px 12px; border-radius: 16px; font-size: 0.8em; color: #4f8cff; cursor: pointer; transition: all 0.2s;">Volume</button>
+        <button class="faq-btn" data-question="How do I view transaction history?" style="background: #e0e7ff; border: none; padding: 6px 12px; border-radius: 16px; font-size: 0.8em; color: #4f8cff; cursor: pointer; transition: all 0.2s;">History</button>
+        <button class="faq-btn" data-question="What is equity in trading?" style="background: #e0e7ff; border: none; padding: 6px 12px; border-radius: 16px; font-size: 0.8em; color: #4f8cff; cursor: pointer; transition: all 0.2s;">Equity</button>
+      </div>
+    </div>
+    
+    <!-- Chat Input -->
+    <div style="padding: 1rem; border-top: 1px solid #eee;">
+      <div style="display: flex; gap: 8px;">
+        <input type="text" id="chatInput" placeholder="Type your question..." style="flex: 1; padding: 8px 12px; border: 1px solid #ddd; border-radius: 20px; font-size: 0.9em; outline: none;">
+        <button id="sendMessage" style="background: linear-gradient(135deg, #4f8cff 0%, #38d39f 100%); color: #fff; border: none; border-radius: 50%; width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; cursor: pointer;">
+          <i class="fas fa-paper-plane"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
   <script src="/js/main.js"></script>
+  
+  <!-- Footer Guide Button Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const footerGuideBtn = document.getElementById('footerGuideBtn');
+      const footerOnboardingBtn = document.getElementById('footerOnboardingBtn');
+      const globalGuideModal = document.getElementById('globalGuideModal');
+      const closeGlobalGuideModal = document.getElementById('closeGlobalGuideModal');
+      
+      // Function to open guide modal
+      function openGuideModal() {
+        if (globalGuideModal) {
+          globalGuideModal.style.display = 'flex';
+          document.body.style.overflow = 'hidden';
+        }
+      }
+      
+      // Function to close guide modal
+      function closeGuideModal() {
+        if (globalGuideModal) {
+          globalGuideModal.style.display = 'none';
+          document.body.style.overflow = '';
+        }
+      }
+      
+      // Both footer buttons open the same guide modal
+      if (footerGuideBtn) {
+        footerGuideBtn.addEventListener('click', function(e) {
+          e.preventDefault();
+          openGuideModal();
+        });
+      }
+      
+      if (footerOnboardingBtn) {
+        footerOnboardingBtn.addEventListener('click', function(e) {
+          e.preventDefault();
+          openGuideModal();
+        });
+      }
+      
+      // Close guide modal
+      if (closeGlobalGuideModal) {
+        closeGlobalGuideModal.addEventListener('click', function(e) {
+          e.preventDefault();
+          closeGuideModal();
+        });
+      }
+      
+      // Close on background click
+      if (globalGuideModal) {
+        globalGuideModal.addEventListener('click', function(e) {
+          if (e.target === globalGuideModal) {
+            closeGuideModal();
+          }
+        });
+      }
+      
+      // Close on escape key
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && globalGuideModal && globalGuideModal.style.display === 'flex') {
+          closeGuideModal();
+        }
+      });
+    });
+  </script>
+
+  <!-- Chatbot Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const chatbotToggle = document.getElementById('chatbotToggle');
+      const chatbotModal = document.getElementById('chatbotModal');
+      const closeChatbot = document.getElementById('closeChatbot');
+      const chatMessages = document.getElementById('chatMessages');
+      const chatInput = document.getElementById('chatInput');
+      const sendMessage = document.getElementById('sendMessage');
+      const faqButtons = document.querySelectorAll('.faq-btn');
+
+      // Comprehensive FAQ responses
+      const faqResponses = {
+        'How do I buy stocks?': 'To buy stocks: 1) Go to the Stocks page, 2) Find a stock you want to buy, 3) Click on the stock, 4) Click "Buy" button, 5) Enter quantity and confirm. Make sure you have enough funds in your wallet! 💰',
+        'How do I check my portfolio?': 'To check your portfolio: 1) Click "Portfolio" in the navigation, 2) You\'ll see all your holdings, 3) View your total value, profit/loss, and performance. You can also check it from the Dashboard! 📊',
+        'How do I add money to my wallet?': 'To add money: 1) Go to Wallet page, 2) Click "Deposit" or "Add Funds", 3) Enter the amount, 4) Confirm the transaction. Your balance will update immediately! 💳',
+        'What is P/L?': 'P/L stands for Profit/Loss. It shows how much money you\'ve made or lost on your investments. Green numbers mean profit, red means loss. It\'s calculated as: Current Value - What You Paid. 📈',
+        'How do I sell stocks?': 'To sell stocks: 1) Go to your Portfolio, 2) Find the stock you want to sell, 3) Click "Sell" button, 4) Enter quantity and confirm. The money goes back to your wallet! 💸',
+        'What are trading hours?': 'Our platform is available 24/7 for practice trading. Real market hours are typically 9:30 AM - 4:00 PM EST, Monday to Friday. 📅',
+        'How do I find specific stocks?': 'Use the search bar on the Stocks page! You can search by company name or stock symbol. You can also browse by categories or view top performers. 🔍',
+        'What if I lose money?': 'Trading involves risk. Start small, diversify your portfolio, and never invest more than you can afford to lose. Use the practice mode to learn before real trading! ⚠️',
+        'How do I track performance?': 'Your performance is tracked automatically! Check the Dashboard for overall stats, or go to Portfolio for detailed breakdown. You can see daily changes and total returns. 📊',
+        'What is a portfolio?': 'A portfolio is your collection of stocks and investments. It shows what you own, how much each stock is worth, and your overall performance. Think of it as your investment basket! 📦',
+        'How do I withdraw money?': 'To withdraw: 1) Go to Wallet page, 2) Click "Withdraw" button, 3) Enter amount, 4) Confirm. Processing time is usually 1-3 business days. 💰',
+        'What are market orders?': 'Market orders buy/sell immediately at the best available price. They execute quickly but price may vary slightly. Perfect for most trading needs! ⚡',
+        'How do I update my profile?': 'To update profile: 1) Click your name in top-right, 2) Select "Profile", 3) Edit your information, 4) Upload a photo, 5) Save changes. 👤',
+        'What is volume in trading?': 'Volume is the number of shares traded in a period. Higher volume usually means more active trading and better liquidity. 📊',
+        'How do I view transaction history?': 'Go to "Transactions" in the navigation to see your complete trading and fund history. All activities are logged with timestamps. 📋',
+        'What is equity in trading?': 'Equity is the current value of your shares in the market. It changes with stock prices and represents your actual investment worth. 💎',
+        'How do I search for stocks?': 'Use the search bar on the Stocks page. You can search by company name (like "Apple") or stock symbol (like "AAPL"). 🔍',
+        'What is diversification?': 'Diversification means spreading your investments across different stocks to reduce risk. Don\'t put all your eggs in one basket! 🥚',
+        'How do I understand stock charts?': 'Stock charts show price movement over time. Green bars mean price went up, red bars mean price went down. Higher bars = bigger price changes. 📈',
+        'What are dividends?': 'Dividends are payments some companies make to shareholders from their profits. They\'re usually paid quarterly and provide regular income. 💵',
+        'How do I set up alerts?': 'Currently, you can monitor stocks manually. We\'re working on price alert features for future updates! 🔔',
+        'What is a bull market?': 'A bull market is when stock prices are rising overall. It\'s a good time for investors as most stocks tend to go up. 🐂',
+        'What is a bear market?': 'A bear market is when stock prices are falling overall. It can be challenging but also creates buying opportunities. 🐻',
+        'How do I calculate returns?': 'Return = (Current Value - Original Investment) / Original Investment × 100. Our platform calculates this automatically for you! 📊',
+        'What is market cap?': 'Market cap is the total value of a company\'s shares. Large cap = big companies, small cap = smaller companies. 💼',
+        'How do I read stock prices?': 'Stock prices show the current cost per share. Changes show how much the price moved (up/down) and the percentage change. 💰',
+        'What is liquidity?': 'Liquidity means how easily you can buy or sell a stock without affecting its price. Higher volume usually means better liquidity. 💧',
+        'How do I manage risk?': 'Manage risk by: 1) Diversifying your portfolio, 2) Not investing more than you can afford to lose, 3) Researching before buying, 4) Setting stop losses. 🛡️',
+        'What is a stock split?': 'A stock split divides existing shares into more shares, reducing the price per share but keeping total value the same. 📊',
+        'How do I understand earnings?': 'Earnings show how much profit a company makes. Higher earnings often mean better stock performance. 💰',
+        'What is technical analysis?': 'Technical analysis studies price patterns and trends to predict future stock movements. It\'s one way to analyze stocks. 📈',
+        'What is fundamental analysis?': 'Fundamental analysis studies company financials, management, and industry to determine stock value. It\'s another analysis method. 📊'
+      };
+
+      // Function to add message to chat
+      function addMessage(message, isUser = false) {
+        const messageDiv = document.createElement('div');
+        messageDiv.style.display = 'flex';
+        messageDiv.style.gap = '8px';
+        messageDiv.style.alignItems = 'flex-start';
+
+        if (isUser) {
+          messageDiv.style.justifyContent = 'flex-end';
+          messageDiv.innerHTML = `
+            <div style="background: linear-gradient(135deg, #4f8cff 0%, #38d39f 100%); color: #fff; padding: 12px; border-radius: 12px; max-width: 80%;">
+              <p style="margin: 0; font-size: 0.9em;">${message}</p>
+            </div>
+            <div style="width: 32px; height: 32px; background: #f0f4ff; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #4f8cff; font-size: 0.8em;">
+              <i class="fas fa-user"></i>
+            </div>
+          `;
+        } else {
+          messageDiv.innerHTML = `
+            <div style="width: 32px; height: 32px; background: linear-gradient(135deg, #4f8cff 0%, #38d39f 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 0.8em;">
+              <i class="fas fa-robot"></i>
+            </div>
+            <div style="background: #f0f4ff; padding: 12px; border-radius: 12px; max-width: 80%;">
+              <p style="margin: 0; font-size: 0.9em; color: #333;">${message}</p>
+            </div>
+          `;
+        }
+
+        chatMessages.appendChild(messageDiv);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+      }
+
+      // Function to handle user input with enhanced keyword recognition
+      function handleUserInput(input) {
+        const question = input.toLowerCase();
+        let response = '';
+
+        // Enhanced keyword matching with multiple variations
+        if (question.includes('buy') || question.includes('purchase') || question.includes('buying') || question.includes('acquire')) {
+          response = faqResponses['How do I buy stocks?'];
+        } else if (question.includes('portfolio') || question.includes('holdings') || question.includes('investments') || question.includes('my stocks')) {
+          response = faqResponses['How do I check my portfolio?'];
+        } else if (question.includes('wallet') || question.includes('money') || question.includes('deposit') || question.includes('add funds') || question.includes('funding')) {
+          response = faqResponses['How do I add money to my wallet?'];
+        } else if (question.includes('p/l') || question.includes('profit') || question.includes('loss') || question.includes('gain') || question.includes('earnings')) {
+          response = faqResponses['What is P/L?'];
+        } else if (question.includes('sell') || question.includes('selling') || question.includes('liquidate')) {
+          response = faqResponses['How do I sell stocks?'];
+        } else if (question.includes('performance') || question.includes('track') || question.includes('returns') || question.includes('how am i doing')) {
+          response = faqResponses['How do I track my performance?'];
+        } else if (question.includes('hours') || question.includes('time') || question.includes('when') || question.includes('schedule')) {
+          response = faqResponses['What are trading hours?'];
+        } else if (question.includes('search') || question.includes('find') || question.includes('look for') || question.includes('discover')) {
+          response = faqResponses['How do I find specific stocks?'];
+        } else if (question.includes('risk') || question.includes('lose') || question.includes('danger') || question.includes('safe')) {
+          response = faqResponses['What if I lose money?'];
+        } else if (question.includes('withdraw') || question.includes('take out') || question.includes('cash out')) {
+          response = faqResponses['How do I withdraw money?'];
+        } else if (question.includes('order') || question.includes('market order') || question.includes('trade type')) {
+          response = faqResponses['What are market orders?'];
+        } else if (question.includes('profile') || question.includes('account') || question.includes('settings') || question.includes('update')) {
+          response = faqResponses['How do I update my profile?'];
+        } else if (question.includes('volume') || question.includes('trading volume')) {
+          response = faqResponses['What is volume in trading?'];
+        } else if (question.includes('history') || question.includes('transactions') || question.includes('past') || question.includes('record')) {
+          response = faqResponses['How do I view transaction history?'];
+        } else if (question.includes('equity') || question.includes('value') || question.includes('worth')) {
+          response = faqResponses['What is equity in trading?'];
+        } else if (question.includes('diversify') || question.includes('diversification') || question.includes('spread')) {
+          response = faqResponses['What is diversification?'];
+        } else if (question.includes('chart') || question.includes('graph') || question.includes('visual')) {
+          response = faqResponses['How do I understand stock charts?'];
+        } else if (question.includes('dividend') || question.includes('income') || question.includes('payment')) {
+          response = faqResponses['What are dividends?'];
+        } else if (question.includes('alert') || question.includes('notification') || question.includes('reminder')) {
+          response = faqResponses['How do I set up alerts?'];
+        } else if (question.includes('bull') || question.includes('rising') || question.includes('up market')) {
+          response = faqResponses['What is a bull market?'];
+        } else if (question.includes('bear') || question.includes('falling') || question.includes('down market')) {
+          response = faqResponses['What is a bear market?'];
+        } else if (question.includes('return') || question.includes('calculate') || question.includes('percentage')) {
+          response = faqResponses['How do I calculate returns?'];
+        } else if (question.includes('market cap') || question.includes('capitalization')) {
+          response = faqResponses['What is market cap?'];
+        } else if (question.includes('price') || question.includes('cost') || question.includes('value')) {
+          response = faqResponses['How do I read stock prices?'];
+        } else if (question.includes('liquidity') || question.includes('liquid')) {
+          response = faqResponses['What is liquidity?'];
+        } else if (question.includes('manage risk') || question.includes('risk management') || question.includes('protect')) {
+          response = faqResponses['How do I manage risk?'];
+        } else if (question.includes('split') || question.includes('stock split')) {
+          response = faqResponses['What is a stock split?'];
+        } else if (question.includes('earnings') || question.includes('profit') || question.includes('income')) {
+          response = faqResponses['How do I understand earnings?'];
+        } else if (question.includes('technical') || question.includes('analysis') || question.includes('pattern')) {
+          response = faqResponses['What is technical analysis?'];
+        } else if (question.includes('fundamental') || question.includes('financial') || question.includes('company')) {
+          response = faqResponses['What is fundamental analysis?'];
+        } else {
+          response = "I'm not sure about that. Try asking about buying stocks, checking your portfolio, adding money to your wallet, understanding P/L, or any trading terms. You can also click the quick buttons above for instant answers! 💡";
+        }
+
+        addMessage(input, true);
+        setTimeout(() => addMessage(response), 500);
+      }
+
+      // Toggle chatbot
+      if (chatbotToggle && chatbotModal) {
+        chatbotToggle.addEventListener('click', function() {
+          chatbotModal.style.display = chatbotModal.style.display === 'none' ? 'flex' : 'none';
+        });
+
+        closeChatbot.addEventListener('click', function() {
+          chatbotModal.style.display = 'none';
+        });
+      }
+
+      // Handle FAQ button clicks
+      faqButtons.forEach(button => {
+        button.addEventListener('click', function() {
+          const question = this.getAttribute('data-question');
+          const response = faqResponses[question];
+          
+          addMessage(question, true);
+          setTimeout(() => addMessage(response), 500);
+        });
+      });
+
+      // Handle send message
+      if (sendMessage && chatInput) {
+        sendMessage.addEventListener('click', function() {
+          const message = chatInput.value.trim();
+          if (message) {
+            handleUserInput(message);
+            chatInput.value = '';
+          }
+        });
+
+        // Handle Enter key
+        chatInput.addEventListener('keypress', function(e) {
+          if (e.key === 'Enter') {
+            const message = chatInput.value.trim();
+            if (message) {
+              handleUserInput(message);
+              chatInput.value = '';
+            }
+          }
+        });
+
+        // Mobile touch support for input
+        chatInput.addEventListener('touchstart', function(e) {
+          // Prevent zoom on mobile
+          e.preventDefault();
+        }, { passive: false });
+
+        // Auto-focus on mobile when chat opens
+        if (chatbotModal) {
+          chatbotModal.addEventListener('shown', function() {
+            if (window.innerWidth <= 768) {
+              setTimeout(() => chatInput.focus(), 300);
+            }
+          });
+        }
+      }
+
+      // Enhanced mobile support
+      if (chatbotModal) {
+        // Prevent body scroll when chat is open on mobile
+        chatbotModal.addEventListener('touchmove', function(e) {
+          e.stopPropagation();
+        }, { passive: false });
+
+        // Close chat on swipe down (mobile gesture)
+        let startY = 0;
+        let currentY = 0;
+
+        chatbotModal.addEventListener('touchstart', function(e) {
+          startY = e.touches[0].clientY;
+        }, { passive: true });
+
+        chatbotModal.addEventListener('touchmove', function(e) {
+          currentY = e.touches[0].clientY;
+          const diff = startY - currentY;
+          
+          // If swiped down more than 100px, close chat
+          if (diff > 100) {
+            chatbotModal.style.display = 'none';
+          }
+        }, { passive: true });
+      }
+
+      // Add drag-to-identify functionality for FAQ buttons
+      faqButtons.forEach(button => {
+        // Add visual feedback on touch
+        button.addEventListener('touchstart', function() {
+          this.style.transform = 'scale(0.95)';
+          this.style.opacity = '0.8';
+        }, { passive: true });
+
+        button.addEventListener('touchend', function() {
+          this.style.transform = 'scale(1)';
+          this.style.opacity = '1';
+        }, { passive: true });
+
+        // Add hover effect for desktop
+        button.addEventListener('mouseenter', function() {
+          this.style.transform = 'scale(1.05)';
+          this.style.boxShadow = '0 4px 12px rgba(79,140,255,0.3)';
+        });
+
+        button.addEventListener('mouseleave', function() {
+          this.style.transform = 'scale(1)';
+          this.style.boxShadow = 'none';
+        });
+      });
+    });
+  </script>
 </body>
 </html>
 

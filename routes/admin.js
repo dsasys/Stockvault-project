@@ -18,11 +18,52 @@ const isAdmin = (req, res, next) => {
 
 // Admin login page
 router.get("/login", (req, res) => {
-    if (req.session.admin) {
-        return res.redirect("/admin/dashboard")
+  if (req.session.admin) {
+    return res.redirect("/admin/dashboard");
+  }
+  res.render("admin/login", {
+    title: "Admin Login - StockVault",
+    error_msg: null,
+    email: ""
+  });
+});
+
+// Admin login POST
+router.post("/login", async (req, res) => {
+  const { username, password } = req.body;
+  try {
+    // Only allow login by username for admin
+    const [admins] = await pool.query("SELECT * FROM admins WHERE username = ?", [username]);
+    if (admins.length === 0) {
+      return res.render("admin/login", {
+        error_msg: "Invalid admin credentials",
+        username,
+      });
     }
-    res.redirect("/auth/login")
-})
+    const admin = admins[0];
+    // Compare plain text password (for local reference only)
+    if (admin.username === "admin" && password === admin.password) {
+      req.session.admin = {
+        id: admin.id,
+        username: admin.username,
+        email: admin.email,
+      };
+      req.flash("success_msg", "You are now logged in as admin");
+      return res.redirect("/admin/dashboard");
+    } else {
+      return res.render("admin/login", {
+        error_msg: "Invalid admin credentials",
+        username,
+      });
+    }
+  } catch (error) {
+    console.error("Admin login error:", error);
+    res.render("admin/login", {
+      error_msg: "An error occurred during admin login. Please try again.",
+      username,
+    });
+  }
+});
 
 // Admin dashboard
 router.get("/dashboard", isAdmin, async (req, res) => {

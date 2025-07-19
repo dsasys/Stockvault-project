@@ -13,7 +13,7 @@ router.get("/login", (req, res) => {
     return res.redirect("/dashboard")
   }
   res.render("auth/login", {
-    title: "Login - TradePro",
+    title: "Login - StockVault",
     user: null,
   })
 })
@@ -24,7 +24,7 @@ router.get("/register", (req, res) => {
     return res.redirect("/dashboard")
   }
   res.render("auth/register", {
-    title: "Register - TradePro",
+    title: "Register - StockVault",
     user: null,
   })
 })
@@ -41,7 +41,7 @@ router.post(
 
     if (!errors.isEmpty()) {
       return res.render("auth/login", {
-        title: "Login - TradePro",
+        title: "Login - StockVault",
         errors: errors.array(),
         email: req.body.email,
         user: null,
@@ -75,7 +75,7 @@ router.post(
 
       if (users.length === 0) {
         return res.render("auth/login", {
-          title: "Login - TradePro",
+          title: "Login - StockVault",
           error_msg: "Invalid email or password",
           email: req.body.email,
           user: null,
@@ -88,7 +88,7 @@ router.post(
       const isMatch = await bcrypt.compare(req.body.password, user.password)
       if (!isMatch) {
         return res.render("auth/login", {
-          title: "Login - TradePro",
+          title: "Login - StockVault",
           error_msg: "Invalid email or password",
           email: req.body.email,
           user: null,
@@ -109,7 +109,7 @@ router.post(
     } catch (error) {
       console.error("Login error:", error)
       res.render("auth/login", {
-        title: "Login - TradePro",
+        title: "Login - StockVault",
         error_msg: "An error occurred during login. Please try again.",
         email: req.body.email,
         user: null,
@@ -137,7 +137,7 @@ router.post(
 
     if (!errors.isEmpty()) {
       return res.render("auth/register", {
-        title: "Register - TradePro",
+        title: "Register - StockVault",
         errors: errors.array(),
         username: req.body.username,
         email: req.body.email,
@@ -151,7 +151,7 @@ router.post(
 
       if (existingUsers.length > 0) {
         return res.render("auth/register", {
-          title: "Register - TradePro",
+          title: "Register - StockVault",
           error_msg: "Email is already registered",
           username: req.body.username,
           email: req.body.email,
@@ -195,7 +195,7 @@ router.post(
     } catch (error) {
       console.error("Registration error:", error)
       res.render("auth/register", {
-        title: "Register - TradePro",
+        title: "Register - StockVault",
         error_msg: "An error occurred during registration. Please try again.",
         username: req.body.username,
         email: req.body.email,

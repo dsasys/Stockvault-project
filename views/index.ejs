@@ -1,31 +1,58 @@
 <!-- Hero Section -->
-<section class="hero">
+<section class="hero" style="background: linear-gradient(135deg, #6a11cb 0%, #38d39f 100%); padding: 60px 0 40px 0;">
   <div class="container">
     <div class="hero-content">
       <div>
         <div class="text-center">
-          <h1 class="hero-title">Trade Smarter, Not Harder</h1>
+          <h1 class="hero-title animated-hero" style="font-size: 2.8rem; font-weight: 800; color: #fff; min-height: 2.5em;"></h1>
           <br>
-          <br>
-          <p class="hero-description">
+          <p class="hero-description" style="color: #e0e0e0; font-size: 1.2rem;">
             Your all-in-one platform for stock trading with real-time updates and portfolio tracking.
           </p>
           <br>
-          <br>
           <div class="hero-buttons flex justify-center gap-4">
-            <a href="/auth/register" class="btn btn-lg" style="background-color: white; color: #3b82f6;">Get
-              Started</a>
-            <a href="/auth/login" class="btn btn-lg" style="border: 1px solid white; color: white;">Login</a>
+            <a href="/auth/register" class="btn btn-lg" style="background-color: white; color: #6a11cb; font-weight: 600;">Get Started</a>
+            <a href="/auth/login" class="btn btn-lg" style="border: 1px solid white; color: white; font-weight: 600;">Login</a>
           </div>
         </div>
       </div>
       <div>
         <img src="/img/Chart-iMac.png" alt="Trading platform dashboard" class="hero-image"
-          style="max-width: 100%; border-radius: 8px; box-shadow: 0 10px 25px rgba(0,0,0,0.2);">
+          style="max-width: 100%; border-radius: 16px; box-shadow: 0 10px 25px rgba(0,0,0,0.18);">
       </div>
     </div>
   </div>
 </section>
+<script>
+// Animated hero headline
+const heroPhrases = [
+  "Trade Smarter, Not Harder"
+];
+let heroPhraseIndex = 0, heroCharIndex = 0, heroIsDeleting = false;
+const heroEl = document.querySelector('.animated-hero');
+function heroType() {
+  if (!heroEl) return;
+  const current = heroPhrases[heroPhraseIndex];
+  if (heroIsDeleting) {
+    heroEl.textContent = current.substring(0, heroCharIndex--);
+    if (heroCharIndex < 0) {
+      heroIsDeleting = false;
+      setTimeout(heroType, 600);
+    } else {
+      setTimeout(heroType, 40);
+    }
+  } else {
+    heroEl.textContent = current.substring(0, heroCharIndex++);
+    if (heroCharIndex > current.length) {
+      heroIsDeleting = true;
+      setTimeout(heroType, 1800);
+    } else {
+      setTimeout(heroType, 70);
+    }
+  }
+}
+heroType();
+</script>
 
 <!-- Features Section -->
 <section class="features">

@@ -1,3 +1,4 @@
+<% if (typeof title === 'undefined') { title = 'StockVault'; } %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,7 +6,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>
-    <%= title %>
+    <%= typeof title !== 'undefined' ? title : 'StockVault' %>
   </title>
   <link rel="stylesheet" href="/css/style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -16,18 +17,21 @@
   <!-- Navbar -->
   <nav class="navbar">
     <div class="container navbar-container">
-      <a href="/" class="navbar-brand">TradePro</a>
+      <a href="/" class="navbar-brand">StockVault</a>
 
       <ul class="navbar-nav">
         <li><a href="/dashboard" class="<%= title.includes('Dashboard') ? 'active' : '' %>">Dashboard</a></li>
-        <li><a href="/stocks" class="<%= title.includes('Stocks') ? 'active' : '' %>">Stocks</a></li>
+        <% if (user || admin) { %>
+          <li><a href="/stocks" class="<%= title.includes('Stocks') ? 'active' : '' %>">Stocks</a></li>
+        <% } %>
         <% if (user) { %>
           <li><a href="/portfolio" class="<%= title.includes('Portfolio') ? 'active' : '' %>">Portfolio</a></li>
           <li><a href="/wallet" class="<%= title.includes('Wallet') ? 'active' : '' %>">Wallet</a></li>
+          <li><a href="/transactions" class="<%= title.includes('Transactions') ? 'active' : '' %>">Transactions</a></li>
+          <% if (admin) { %>
+            <li><a href="/admin/dashboard" class="<%= title.includes('Admin') ? 'active' : '' %>">Admin</a></li>
           <% } %>
-            <li><a href="/transactions" class="<%= title.includes('Transactions') ? 'active' : '' %>">Transactions</a>
-            </li>
-
+        <% } %>
       </ul>
 
       <div class="navbar-auth">
@@ -68,7 +72,9 @@
   <div id="mobile-menu" class="mobile-menu">
     <ul>
       <li><a href="/" class="<%= title.includes('Home') ? 'active' : '' %>">Home</a></li>
-      <li><a href="/stocks" class="<%= title.includes('Stocks') ? 'active' : '' %>">Stocks</a></li>
+      <% if (user || admin) { %>
+        <li><a href="/stocks" class="<%= title.includes('Stocks') ? 'active' : '' %>">Stocks</a></li>
+      <% } %>
       <% if (user) { %>
         <% if (user.profile_picture) { %>
           <li class="mobile-profile">
@@ -98,8 +104,10 @@
               <li><a href="/portfolio" class="<%= title.includes('Portfolio') ? 'active' : '' %>">Portfolio</a></li>
               <li><a href="/wallet" class="<%= title.includes('Wallet') ? 'active' : '' %>">Wallet</a></li>
               <li><a href="/dashboard" class="<%= title.includes('Dashboard') ? 'active' : '' %>">Dashboard</a></li>
-              <li><a href="/transactions" class="<%= title.includes('Transactions') ? 'active' : '' %>">Transactions</a>
-              </li>
+              <li><a href="/transactions" class="<%= title.includes('Transactions') ? 'active' : '' %>">Transactions</a></li>
+              <% if (admin) { %>
+                <li><a href="/admin/dashboard" class="<%= title.includes('Admin') ? 'active' : '' %>">Admin</a></li>
+              <% } %>
               <li><a href="/auth/logout">Logout</a></li>
               <% } else { %>
                 <div class="mobile-menu-auth">

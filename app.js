@@ -1,3 +1,7 @@
+
+require("dotenv").config();
+
+
 const express = require("express")
 const path = require("path")
 const mysql = require("mysql2/promise")
@@ -38,7 +42,7 @@ const sessionStore = new MySQLStore({
 
 // Session configuration
 app.use(session({
-  secret: process.env.SESSION_SECRET || "trading_platform_secret",
+  secret: process.env.SESSION_SECRET || "stockvault_secret",
   store: sessionStore,
   resave: false,
   saveUninitialized: false,
@@ -134,11 +138,29 @@ app.get("/dashboard", async (req, res) => {
       [req.session.user.id],
     )
 
+    // Calculate portfolio summary
+    let portfolioValue = 0, portfolioCost = 0, portfolioProfit = 0, portfolioProfitPercent = 0;
+    if (holdings && holdings.length > 0) {
+      for (const holding of holdings) {
+        const price = parseFloat(holding.price || 0);
+        const quantity = parseFloat(holding.quantity || 0);
+        const avgPrice = parseFloat(holding.avg_price || 0);
+        portfolioValue += price * quantity;
+        portfolioCost += avgPrice * quantity;
+      }
+      portfolioProfit = portfolioValue - portfolioCost;
+      portfolioProfitPercent = portfolioCost > 0 ? (portfolioProfit / portfolioCost) * 100 : 0;
+    }
+
     res.render("dashboard", {
       title: "Dashboard - TradePro",
       user: req.session.user,
       stocks,
       holdings,
+      portfolioValue,
+      portfolioCost,
+      portfolioProfit,
+      portfolioProfitPercent,
     })
   } catch (error) {
     console.error("Dashboard error:", error)
