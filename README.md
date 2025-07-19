@@ -3,7 +3,7 @@
 [![Node.js](https://img.shields.io/badge/Node.js-18.x-green.svg)](https://nodejs.org/)
 [![Express](https://img.shields.io/badge/Express-4.x-blue.svg)](https://expressjs.com/)
 [![MySQL](https://img.shields.io/badge/MySQL-8.0-orange.svg)](https://www.mysql.com/)
-[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
 
 > **Your Gateway to Smart Trading** - A comprehensive stock trading platform with real-time portfolio management, interactive charts, and AI-powered assistance.
 
@@ -19,8 +19,7 @@
 - [🔧 Installation](#-installation)
 - [⚙️ Configuration](#️-configuration)
 - [📱 Mobile Support](#-mobile-support)
-- [🤝 Contributing](#-contributing)
-- [📄 License](#-license)
+
 
 ## ✨ Features
 
@@ -305,9 +304,7 @@ We welcome contributions! Please follow these steps:
 - Update documentation as needed
 - Ensure mobile compatibility
 
-## 📄 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## 🙏 Acknowledgments
 
@@ -318,6 +315,3 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-**Made with ❤️ by the StockVault Team**
-
-*Your journey to smart trading starts here! 🚀* 
